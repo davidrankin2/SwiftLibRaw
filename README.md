@@ -1,7 +1,6 @@
 
 # Welcome to SwiftLibRaw
 
-SwiftLibRaw is 
 SwiftLibRaw is a Swift package wrapping the
 [LibRaw](https://github.com/LibRaw/LibRaw)
 C and C++ library. LibRaw processes a multitude of RAW photo formats, providing
