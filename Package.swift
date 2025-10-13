@@ -40,16 +40,45 @@ let package = Package(
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
-        .systemLibrary(name: "libraw_r", pkgConfig: "libraw_r", providers: [.brew(["libraw"])]),
+        // .systemLibrary(name: "libraw", pkgConfig: "libraw", providers: [.brew(["libraw"])]),
+        .target(
+        	name: "libraw",
+            // dependencies: ["libraw"],
+            // type: .dynamic,
+            exclude: [
+            	"LibRaw/src/Makefile",
+            ],
+            sources: [
+            	"LibRaw/src",
+            	"LibRaw/src/decoders",
+            	"LibRaw/src/demosaic",
+            	"LibRaw/src/integration",
+            	"LibRaw/src/metadata",
+            	"LibRaw/src/preprocessing",
+            	"LibRaw/src/postprocessing",
+            	"LibRaw/src/tables",
+            	"LibRaw/src/utils",
+            	"LibRaw/src/write",
+            	"LibRaw/src/x3f",
+            ],
+            publicHeadersPath: "Libraw/libraw",
+            cxxSettings: [
+            	.headerSearchPath("Libraw"),
+                // .unsafeFlags([
+                //	"-Wno-module-import-in-extern-c",
+                // ]),
+            ],
+            swiftSettings: [.interoperabilityMode(.Cxx)],
+        ),
         .target(
         	name: "libraw_glue",
-            dependencies: ["libraw_r"],
+            dependencies: ["libraw"],
             // sources: [ "libraw_glue.cpp" ],
             swiftSettings: [.interoperabilityMode(.Cxx)],
         ),
         .target(
             name: "SwiftLibRaw",
-            dependencies: ["libraw_r", "libraw_glue" ],
+            dependencies: ["libraw", "libraw_glue" ],
             swiftSettings: [.interoperabilityMode(.Cxx)],
         ),
         .testTarget(
