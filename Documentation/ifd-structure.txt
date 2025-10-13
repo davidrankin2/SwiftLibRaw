@@ -1,3 +1,4 @@
+
 // Copyright © 2025 David W. Rankin Jr.
 
 // Permission is hereby granted, free of charge, to any person obtaining
@@ -18,4 +19,32 @@
 // CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 // TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 // SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+
+IFD tag structure:
+
+1. Tag: 2 byte number. (UInt16)
+
+2. Type:
+    * 1 = Byte (UInt8)
+
+    * 2 = ASCII (Char). For strings, null-terminated.
+      (Count includes NULL)
+
+    * 3 = Short (UInt16)
+
+    * 4 = Long (UInt32)
+
+    * 5 = Rational, 2 UInt32. Word 1 / Word 2, for a decimal.
+
+    * 7 = Undefined (effectively bytes again)
+
+    * 9 = Slong (2s compliment signed integer. Functionally, Int32)
+
+    * 10 = SRational, 2 Int32. Word 1 / Word 2
+
+    * 129 = UTF-8 String, null terminated (count includes Null)
+
+Count: Number of objects, not necessarily bytes.
 

@@ -1,0 +1,5 @@
+module libraw_glue {
+    umbrella header "libraw_glue.h"
+    link "libraw_glue.cpp"
+    export *
+}
