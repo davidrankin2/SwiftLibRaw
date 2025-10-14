@@ -165,7 +165,7 @@ public class SwiftLibRaw {
     // Allow nil to emulate NULL
     var cBuffer: UnsafeMutablePointer<libraw_data_t>?
 
-    public var metadata: Dictionary<Int32, Any>
+    fileprivate var metadata: Dictionary<Int32, Any>
 
     let objlock = OSAllocatedUnfairLock()
 
@@ -246,6 +246,16 @@ public class SwiftLibRaw {
             libraw_close(self.cBuffer!)
             return nil
         }
+    }
+
+    public func get_metadata() -> Dictionary<Int32, Any> {
+        // Not locked, because no one is now writing on this data.
+    	return self.metadata
+    }
+
+    public func get_metadata(tag: Int32) -> Any? {
+        // Not locked, because no one is now writing on this data.
+    	return self.metadata[tag]
     }
 
     public func get_imgother() -> SLW_imgother? {
