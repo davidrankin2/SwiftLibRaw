@@ -28,6 +28,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 The SwiftLibRaw package in source form may be distributed under the license
 detailed above (hereafter, the "MIT License").
 
+In its current form, libSwiftLibRaw.dylib includes both code under the MIT
+license as above, and LibRaw code under the LGPL and CDDL licenses, as
+specified in the LibRaw package. Any distribution of the dylib file with an
+executable must obey the requirements of the LGPL and/or CDDL licenses as
+specified by the LibRaw package.
 
 ## History and Focus
 
@@ -49,7 +54,9 @@ static and dynamic libraries.
 
 ## Thread-safe Status
 
-SwiftLibRaw is using the `libraw_r` thread-safe compilation of libraw.
+SwiftLibRaw compiles the source code without the LIBRAW_NOTHREADS option.
+This should make code equivalent to the `libraw_r` thread-safe compilation.
+
 The SwiftLibRaw object itself is protected by a `OSAllocatedUnfairLock`
 lock used for all calls after the init process succeeds. 
 
