@@ -19,3 +19,14 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+
+---
+
+Binary Distributions of SwiftLibRaw with LibRaw compiled in are subject to
+both the MIT License above and the user's choice of the COMMON DEVELOPMENT
+AND DISTRIBUTION LICENSE (CDDL) Version 1.0 as per
+https://raw.githubusercontent.com/LibRaw/LibRaw/refs/heads/master/LICENSE.CDDL
+or the GNU Lesser General Public License (LGPL) version 2.1, as per
+https://raw.githubusercontent.com/LibRaw/LibRaw/refs/heads/master/LICENSE.LGPL
+

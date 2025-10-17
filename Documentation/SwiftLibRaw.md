@@ -26,13 +26,17 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ## Distribution
 
 The SwiftLibRaw package in source form may be distributed under the license
-detailed above (hereafter, the "MIT License").
+detailed above (hereafter, the "MIT License"). Any binary distributions of
+this code that do not include LibRaw compiled code may be made solely by
+complying with the MIT License above.
 
-In its current form, libSwiftLibRaw.dylib includes both code under the MIT
+When this module is built and binary objects created, the dynamic library
+libSwiftLibRaw.dylib includes both code under the MIT
 license as above, and LibRaw code under the LGPL and CDDL licenses, as
-specified in the LibRaw package. Any distribution of the dylib file with an
-executable must obey the requirements of the LGPL and/or CDDL licenses as
-specified by the LibRaw package.
+specified in the LibRaw package. Any distribution of the dylib file 
+(and any other files with content from LibRaw) with an
+executable must also obey the requirements of the LGPL and/or CDDL licenses
+as specified by the LibRaw package.
 
 ## History and Focus
 
