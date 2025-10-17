@@ -47,6 +47,9 @@ let package = Package(
             // type: .dynamic,
             exclude: [
             	"LibRaw/src/Makefile",
+            	"LibRaw/src/preprocessing/preprocessing_ph.cpp",
+            	"LibRaw/src/postprocessing/postprocessing_ph.cpp",
+            	"LibRaw/src/write/write_ph.cpp",
             ],
             sources: [
             	"LibRaw/src",
