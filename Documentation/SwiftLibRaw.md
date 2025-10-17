@@ -83,7 +83,9 @@ objects. Arrays are usually left as unconverted tuples.
     public func get_raw_height() -> Int32 {}
     public func get_raw_width() -> Int32 {}
     public func get_iheight() -> Int32 {}
-    public func get_iwidth() -> Int32 {
+    public func get_iwidth() -> Int32 {}
+    public func get_metadata() -> Dictionary<Int32, Any> {}
+    public func get_metadata(tag: Int32) -> Any? {}
 ```
 
 #### init and Options
@@ -107,10 +109,12 @@ Optional settings are in `options`. Currently, two options are recognized:
   `LIBRAW_OPTIONS_NO_DATAERR_CALLBACK`. 
 
 * `library_exifparser`. When this is any value but nil, SwiftLibRaw.metadata
-  will be populated with raw metadata from the file. self.metadata is a 
+  will be populated with raw metadata from the file. This dictionary is a 
   Dictionary<Int32, Any>, with the key as the tag as presented under
   libraw_callbacks_t in
   [the documentation](https://www.libraw.org/docs/API-datastruct-eng.html#libraw_callbacks_t).
+
+  Access to this metadata is detailed below.
 
   * Byte and Undefined data is returned as a Data object.
 
@@ -124,6 +128,14 @@ Optional settings are in `options`. Currently, two options are recognized:
     GPS co-ordinates) are a tuple of (Double Array, Int/UInt Array, Int/UInt
     Array)
 
+### SwiftLibRaw get_metadata
+
+The metadata generated if library_exifparser is selected is returned by
+get_metadata. If no argument is given, the entire dictionary is returned.
+If a specific key is requested, that key or a nil is requested.
+
+If library_exifparser was not selected, then get_metadata will return
+an empty dictionary, or nil if a specific key is requested.
 
 ### SLW_iparams
 
