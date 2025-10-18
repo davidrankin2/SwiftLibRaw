@@ -38,6 +38,12 @@ specified in the LibRaw package. Any distribution of the dylib file
 executable must also obey the requirements of the LGPL and/or CDDL licenses
 as specified by the LibRaw package.
 
+Also when built as a binary object, this library includes code from zlib
+by Jean-loup Gailly and Mark Adler as copied from
+https://github.com/the-swift-collective/ZLibC. This code is distributed
+under a modified BSD license at
+https://raw.githubusercontent.com/the-swift-collective/ZLibC/afcd7d6652aaa890e426a22ee327d508783d76c8/LICENSE .
+
 ## History and Focus
 
 We started out building SwiftLibRaw to work around a bug in Apple's CR3

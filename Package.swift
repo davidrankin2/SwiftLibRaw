@@ -38,13 +38,18 @@ let package = Package(
             targets: ["SwiftLibRaw"]
         ),
     ],
+    dependencies: [
+		.package(url: "https://github.com/the-swift-collective/zlib.git", from: "1.3.1")
+  	],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         // .systemLibrary(name: "libraw", pkgConfig: "libraw", providers: [.brew(["libraw"])]),
         .target(
         	name: "libraw",
-            // dependencies: ["libraw"],
+            dependencies: [
+            	.product(name: "ZLibC", package: "zlib"),
+			],
             // type: .dynamic,
             exclude: [
             	"LibRaw/src/Makefile",
@@ -66,6 +71,9 @@ let package = Package(
             	"LibRaw/src/x3f",
             ],
             publicHeadersPath: "Libraw/libraw",
+            cSettings: [
+            	.define("USE_ZLIB", to: "1"),
+            ], 
             cxxSettings: [
             	.headerSearchPath("Libraw"),
                 // .unsafeFlags([
