@@ -25,9 +25,14 @@ import OSLog
 import libraw
 import libraw_glue
 
-private let testEndianValue = UInt32(0xdeadbeef)
-
-private let amILittleIndian = (testEndianValue == testEndianValue.littleEndian)
+// Faster just to use a compiler test here. Still setting a variable because
+// it's easier than using compiler spaghetti code. The compiler should 
+// optimize the code well.
+#if _endian(little)
+private let amILittleIndian = true
+#elseif _endian(big)
+private let amILittleIndian = false
+#endif
 
 // exif callback function
 private let exif_callback : exif_parser_callback = { (context: Optional<UnsafeMutableRawPointer>, tag: Int32, type: Int32, len: Int32, ord: UInt32, ifp: Optional<UnsafeMutableRawPointer>, base: Int64) in
@@ -49,11 +54,12 @@ private func get2u(ifp: Optional<UnsafeMutableRawPointer>, fileIsLittleEnd: Bool
     let intdata = SwiftLibRaw_glue_get2u(ifp)
     // If the endian is swapped, swap it back.
 	if (fileIsLittleEnd != amILittleIndian) {
-        if (amILittleIndian) {
+        // Using compiler magic to save an if/else
+        #if _endian(little)
         	return intdata.littleEndian
-        } else {
+        #elseif _endian(big)
         	return intdata.bigEndian
-        }
+        #endif
     } else {
         return intdata
     }
@@ -64,11 +70,12 @@ private func get4u(ifp: Optional<UnsafeMutableRawPointer>, fileIsLittleEnd: Bool
     let intdata = SwiftLibRaw_glue_get4u(ifp)
     // If the endian is swapped, swap it back.
 	if (fileIsLittleEnd != amILittleIndian) {
-        if (amILittleIndian) {
+        // Using compiler magic to save an if/else
+        #if _endian(little)
         	return intdata.littleEndian
-        } else {
+        #elseif _endian(big)
         	return intdata.bigEndian
-        }
+        #endif
     } else {
         return intdata
     }
